@@ -278,13 +278,17 @@ define(['d3', 'https://cdn.jsdelivr.net/gh/jasondavies/d3-cloud@master/build/d3.
 
       //from parser
       let cleanText = this.wordsRaw.split('\n').join(' ').split('\r').join(' ');
-      cleanText = cleanText.replace(/[;:\[\]()“”."!?,–_—\*-]/g, " ");
+      cleanText = cleanText.replace(/[;:\[\]()“”."!?,_—\*]/g, " ");
       let cleanWords = cleanText.split(' ');
+      cleanWords = cleanWords.map(s => String(s[0]).toUpperCase() + String(s).slice(1));
+      cleanText = cleanWords.join(' ')
+      cleanText = cleanText.replace(/ UNDEFINED/g, "");
+      console.log( "Original: %s", cleanText);
       wordCount = 0;
       cleanWords.forEach((c) => (c.length > 0) ? wordCount++ : null);
       this.wordCount = wordCount;
 
-      this.wordsParsed = parser.parseText(wordsRaw, this.stopWords, this.stopWordPref, this.semanticPref, this.semGroupModel);
+      this.wordsParsed = parser.parseText(cleanText, this.stopWords, this.stopWordPref, this.semanticPref, this.semGroupModel);
       this.words = this.wordsParsed.slice(0, Math.min(this.wordsParsed.length, this.numWordsPref)); //if there are more words in text than user specified, remove the extra
       while(this.words.length>0 && (this.words[this.words.length-1].frequency<=this.minCountPref || (this.words.length<this.wordsParsed.length && this.words[this.words.length-1].frequency === this.wordsParsed[this.words.length].frequency)))
       { //remove words one at a time until there are no cases of a word being in the list while another word with the same frequency is not in the list, and also remove words with frequency less than minfrequency pref
