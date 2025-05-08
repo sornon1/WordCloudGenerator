@@ -108,7 +108,9 @@ button:hover, #fileInput:hover
     #leftContentColumn
     {
         width: 100vw;
+        top: 100vw;
         display: block;
+        z-index: -1;
     }
 
     #rightContentColumn
@@ -129,7 +131,6 @@ button:hover, #fileInput:hover
     aspect-ratio: 1;
     border: 2px solid black;
     border-radius: 5px;
-    position: fixed;
 }
 
 #rawTextInput
