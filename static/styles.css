@@ -96,6 +96,11 @@ button:hover, #fileInput:hover
     {
         width: 96vh;
     }
+    #rightContentColumn
+    {
+        flex-grow: 1;
+        padding-left: 1.5em;
+    }
 }
 
 @media (max-width: 500px) { /* adjust to your needs */
@@ -103,16 +108,17 @@ button:hover, #fileInput:hover
     #leftContentColumn
     {
         width: 100vw;
-        position: fixed;
-        bottom: 0;
+        position: relative;
+        display: block;
     }
-}
 
-
-#rightContentColumn
-{
-    flex-grow: 1;
-    padding-left: 1.5em;
+    #rightContentColumn
+    {
+         width: 100vw;
+        padding-left: 1.5em;
+        display: block;
+        
+    }
 }
 
 #wordCloudPreview
