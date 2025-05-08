@@ -90,10 +90,24 @@ button:hover, #fileInput:hover
     vertical-align: middle;
 }
 
-#leftContentColumn
-{
-    width: 96vh;
+
+@media (min-width: 500px) {
+    #leftContentColumn
+    {
+        width: 96vh;
+    }
 }
+
+@media (max-width: 500px) { /* adjust to your needs */
+
+    #leftContentColumn
+    {
+        width: 100vw;
+        position: fixed;
+        bottom: 0;
+    }
+}
+
 
 #rightContentColumn
 {
